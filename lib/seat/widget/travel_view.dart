@@ -15,30 +15,36 @@ class travelView extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(
-          departureStation, // 출발역 텍스트 표시
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: Colors.purple,
-            fontSize: 30,
+        Expanded(
+          child: Text(
+            departureStation, // 출발역 텍스트 표시
+            textAlign: TextAlign.center, // 텍스트를 오른쪽 정렬
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.purple,
+              fontSize: 30,
+            ),
           ),
         ),
         SizedBox(
-          width: 40,
+          width: 20,
         ),
         Icon(
           Icons.arrow_circle_right_outlined,
           size: 30,
         ),
         SizedBox(
-          width: 40,
+          width: 20,
         ),
-        Text(
-          arrivalStation, // 도착역 텍스트 표시
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: Colors.purple,
-            fontSize: 30,
+        Expanded(
+          child: Text(
+            arrivalStation, // 도착역 텍스트 표시
+            textAlign: TextAlign.center, // 텍스트를 왼쪽 정렬
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.purple,
+              fontSize: 30,
+            ),
           ),
         ),
       ],

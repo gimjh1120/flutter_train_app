@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_train_app/seat/seat_page.dart';
 
@@ -32,8 +33,20 @@ class seatButton extends StatelessWidget {
             );
           } else {
             // 출발역과 도착역이 선택되지 않았을 경우 알림
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text("출발역과 도착역을 선택해주세요.")),
+            showCupertinoDialog(
+              context: context,
+              builder: (context) {
+                return CupertinoAlertDialog(
+                  content: Text('출발역과 도착역을 선택해주세요!'),
+                  actions: [
+                    CupertinoDialogAction(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Text('확인'))
+                  ],
+                );
+              },
             );
           }
         },
