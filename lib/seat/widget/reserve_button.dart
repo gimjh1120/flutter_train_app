@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class SeatButton extends StatelessWidget {
+class reserveButton extends StatelessWidget {
   final String departureStation;
   final String arrivalStation;
 
-  const SeatButton({
+  const reserveButton({
     Key? key,
     required this.departureStation,
     required this.arrivalStation,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_train_app/home/widget/seat_button.dart';
+import 'package:flutter_train_app/seat/widget/reserve_button.dart';
 import 'package:flutter_train_app/seat/widget/select_view.dart';
 import 'package:flutter_train_app/seat/widget/travel_view.dart';
 
@@ -70,7 +70,9 @@ class SeatPage extends StatelessWidget {
                 ],
               ),
             ),
-            seatButton(),
+            reserveButton(
+                departureStation: departureStation,
+                arrivalStation: arrivalStation),
             SizedBox(
               height: 20,
             )

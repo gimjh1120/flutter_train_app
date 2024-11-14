@@ -21,7 +21,7 @@ class seatButton extends StatelessWidget {
         onPressed: () {
           if (departureStation != null && arrivalStation != null) {
             Navigator.of(context).popUntil((route) => route.isFirst);
-            Navigator.pushReplacement(
+            Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => SeatPage(
