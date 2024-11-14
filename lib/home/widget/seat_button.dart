@@ -3,7 +3,12 @@ import 'package:flutter/material.dart';
 class seatButton extends StatelessWidget {
   const seatButton({
     super.key,
+    this.arrivalStation,
+    this.departureStation,
   });
+
+  final String? departureStation;
+  final String? arrivalStation;
 
   @override
   Widget build(BuildContext context) {

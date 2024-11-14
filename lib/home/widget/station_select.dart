@@ -1,16 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_train_app/station/station_list_page.dart';
 
 class StationSelect extends StatelessWidget {
+  final String? departureStation;
+  final String? arrivalStation;
+  final VoidCallback onSelectDeparture;
+  final VoidCallback onSelectArrival;
+
   const StationSelect({
     super.key,
+    required this.departureStation,
+    required this.arrivalStation,
+    required this.onSelectDeparture,
+    required this.onSelectArrival,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 200, // 부모 컨테이너의 높이 제한
+      height: 200,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         color: Colors.white,
@@ -18,44 +26,61 @@ class StationSelect extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Expanded(child: stations(context, '출발역')),
+          Expanded(
+            child: GestureDetector(
+              onTap: onSelectDeparture,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    '출발역',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.grey,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    departureStation ?? '선택',
+                    style: TextStyle(
+                      fontSize: 40,
+                      color:
+                          departureStation == null ? Colors.grey : Colors.black,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
           Container(
             width: 2,
             height: 50,
             color: Colors.grey[400],
           ),
-          Expanded(child: stations(context, '도착역')),
-        ],
-      ),
-    );
-  }
-
-  Widget stations(BuildContext context, String title) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => StationListPage(title: title)),
-        );
-      },
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            title,
-            style: TextStyle(
-              fontSize: 16,
-              color: Colors.grey,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          SizedBox(height: 8),
-          Text(
-            '선택',
-            style: TextStyle(
-              fontSize: 40,
+          Expanded(
+            child: GestureDetector(
+              onTap: onSelectArrival,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    '도착역',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.grey,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    arrivalStation ?? '선택',
+                    style: TextStyle(
+                      fontSize: 40,
+                      color:
+                          arrivalStation == null ? Colors.grey : Colors.black,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ],
