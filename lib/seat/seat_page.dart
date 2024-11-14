@@ -1,11 +1,18 @@
-// ignore_for_file: avoid_unnecessary_containers
-
 import 'package:flutter/material.dart';
 import 'package:flutter_train_app/home/widget/seat_button.dart';
 import 'package:flutter_train_app/seat/widget/select_view.dart';
 import 'package:flutter_train_app/seat/widget/travel_view.dart';
 
 class SeatPage extends StatelessWidget {
+  final String departureStation;
+  final String arrivalStation;
+
+  const SeatPage({
+    Key? key,
+    required this.departureStation,
+    required this.arrivalStation,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,7 +23,10 @@ class SeatPage extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           children: [
-            travelView(),
+            travelView(
+              departureStation: departureStation,
+              arrivalStation: arrivalStation,
+            ),
             selectView(),
             Expanded(
               child: ListView(
@@ -61,6 +71,9 @@ class SeatPage extends StatelessWidget {
               ),
             ),
             seatButton(),
+            SizedBox(
+              height: 20,
+            )
           ],
         ),
       ),
