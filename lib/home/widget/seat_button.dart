@@ -20,15 +20,14 @@ class seatButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: () {
           if (departureStation != null && arrivalStation != null) {
-            Navigator.push(
+            Navigator.of(context).popUntil((route) => route.isFirst);
+            Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                builder: (context) {
-                  return SeatPage(
-                    departureStation: departureStation!,
-                    arrivalStation: arrivalStation!,
-                  );
-                },
+                builder: (context) => SeatPage(
+                  departureStation: departureStation!,
+                  arrivalStation: arrivalStation!,
+                ),
               ),
             );
           } else {
@@ -43,7 +42,7 @@ class seatButton extends StatelessWidget {
                         onPressed: () {
                           Navigator.of(context).pop();
                         },
-                        child: Text('확인'))
+                        child: Text('확인')),
                   ],
                 );
               },

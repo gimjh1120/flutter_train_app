@@ -1,9 +1,15 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class seatButton extends StatelessWidget {
-  const seatButton({
-    super.key,
-  });
+class SeatButton extends StatelessWidget {
+  final String departureStation;
+  final String arrivalStation;
+
+  const SeatButton({
+    Key? key,
+    required this.departureStation,
+    required this.arrivalStation,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +19,34 @@ class seatButton extends StatelessWidget {
         width: double.infinity,
         height: 56,
         child: ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            showCupertinoDialog(
+              context: context,
+              builder: (context) {
+                return CupertinoAlertDialog(
+                  title: Text('예약하시겠습니까?'),
+                  content: Text('출발역: $departureStation\n도착역: $arrivalStation'),
+                  actions: [
+                    CupertinoDialogAction(
+                      isDefaultAction: true,
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: Text('취소'),
+                    ),
+                    CupertinoDialogAction(
+                      isDestructiveAction: true,
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                        // 예약 확정 처리 로직을 여기에 추가할 수 있습니다.
+                      },
+                      child: Text('확인'),
+                    ),
+                  ],
+                );
+              },
+            );
+          },
           child: Text(
             '예매 하기',
             style: TextStyle(
