@@ -18,7 +18,7 @@ class travelView extends StatelessWidget {
         Expanded(
           child: Text(
             departureStation, // 출발역 텍스트 표시
-            textAlign: TextAlign.center, // 텍스트를 오른쪽 정렬
+            textAlign: TextAlign.end, // 텍스트를 오른쪽 정렬
             style: TextStyle(
               fontWeight: FontWeight.bold,
               color: Colors.purple,
@@ -39,7 +39,7 @@ class travelView extends StatelessWidget {
         Expanded(
           child: Text(
             arrivalStation, // 도착역 텍스트 표시
-            textAlign: TextAlign.center, // 텍스트를 왼쪽 정렬
+            textAlign: TextAlign.start, // 텍스트를 왼쪽 정렬
             style: TextStyle(
               fontWeight: FontWeight.bold,
               color: Colors.purple,
