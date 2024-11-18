@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_train_app/seat/widget/select_view.dart';
 import 'package:flutter_train_app/seat/widget/travel_view.dart';
 
+//좌석 선택 시 ui 변경을 위해 stateFulWidget 사용
 class SeatPage extends StatefulWidget {
   final String departureStation;
   final String arrivalStation;
@@ -21,6 +22,7 @@ class _SeatPageState extends State<SeatPage> {
   // 선택된 좌석을 저장할 리스트
   List<String> selectedSeats = [];
 
+  //좌석 선택 시 좌석 번호 데이터
   void toggleSeatSelection(String seatNumber) {
     setState(() {
       if (selectedSeats.contains(seatNumber)) {
@@ -38,23 +40,28 @@ class _SeatPageState extends State<SeatPage> {
         title: Text('좌석 선택'),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 20), //body 좌우 패딩
         child: Column(
           children: [
+            //상단 출발역, 도착역 widget
             travelView(
+              //위젯에 데이터 공유
               departureStation: widget.departureStation,
               arrivalStation: widget.arrivalStation,
             ),
-            selectView(),
+            selectView(), //선택 여부 알림
+            //좌석 리스트
             Expanded(
+              //스크롤
               child: ListView(
                 children: [
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center, //가운데 정렬
                     children: [
+                      //각 열 생성
                       buildSeatColumn('A'),
                       buildSeatColumn('B'),
-                      buildSeatColumn(' '),
+                      buildSeatColumn(' '), //중앙 행 안내
                       buildSeatColumn('C'),
                       buildSeatColumn('D'),
                     ],
@@ -72,6 +79,7 @@ class _SeatPageState extends State<SeatPage> {
 
   // 좌석 열을 생성하는 메서드
   Column buildSeatColumn(String row) {
+    //행 안내 열
     if (row == ' ') {
       // 번호 표시 열
       return Column(
@@ -83,12 +91,14 @@ class _SeatPageState extends State<SeatPage> {
           ),
         ],
       );
-    } else {
+    }
+    //좌석 선택 버튼 생성
+    else {
       return Column(
         children: [
           Text(row),
           ...List.generate(20, (index) {
-            String seatNumber = '${index + 1}-$row';
+            String seatNumber = '${index + 1}-$row'; //시트 번호
             return GestureDetector(
               onTap: () => toggleSeatSelection(seatNumber),
               child: seat(
