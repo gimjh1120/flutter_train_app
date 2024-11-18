@@ -26,6 +26,7 @@ class StationSelect extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          //출발역 영역
           Expanded(
             child: GestureDetector(
               onTap: onSelectDeparture,
@@ -41,17 +42,19 @@ class StationSelect extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    departureStation ?? '선택',
+                    departureStation ?? '선택', //출발역 데이터가 null인 경우 '선택' 출력
                     style: TextStyle(
                       fontSize: 40,
-                      color:
-                          departureStation == null ? Colors.grey : Colors.black,
+                      color: departureStation == null
+                          ? Colors.grey
+                          : Colors.black, //출발역이 null인 경우 텍스트 회색, 아닌 경우 검정색
                     ),
-                  ),
+                  )
                 ],
               ),
             ),
           ),
+          //구분선
           Container(
             width: 2,
             height: 50,
