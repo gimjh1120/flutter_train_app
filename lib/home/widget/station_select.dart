@@ -54,12 +54,13 @@ class StationSelect extends StatelessWidget {
               ),
             ),
           ),
-          //구분선
+          //중앙 구분선
           Container(
             width: 2,
             height: 50,
             color: Colors.grey[400],
           ),
+          //도착역 영역
           Expanded(
             child: GestureDetector(
               onTap: onSelectArrival,
